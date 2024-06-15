@@ -1,0 +1,56 @@
+CHALLENGE DESARROLLADOR SEMI-SENIOR DE SOFTWARE NOMINAZ S.A
+
+REQUERIMIENTOS: 
+
+Es necesario tener un ambiente MySQL + PHP instalado con cualquier versión.
+
+OBSERVACIONES: 
+
+- Puedes utilizar un framework PHP con ORM para realizar este ejercicio o PHP puro con consultas directas a MySQL.
+- Puedes utilizar CSS o Javascript opcionalmente para mejorar la estética del formulario y reporte, pero no es lo esencial de este challenge. Puedes hacerlo si te sobra el tiempo.
+- Puedes guiarte en la documentación de funciones PHP nada más, caso contrario serás descalificado 
+
+
+INDICACIONES: 
+
+1. Se adjunta el script empresaPruebaChallenge.sql que contiene diversas tablas. Correr el script en cualquier DBMS MySQL. Por ejemplo MySQL Workbench, phpMyAdmin, etc
+
+2. Centrarse y analizar las tablas y relaciones entre persona, cargos, liquidación, y liquidacionHistorico. En términos generales tienen lo siguiente:
+- persona: Posee información de empleados
+- cargos: Posee información de cargos
+- liquidacion: Posee toda la información de liquidaciones de los empleados separada por conceptos. El atributo "clase" determina si un concepto es un I = Ingreso, D = Descuento, P = Prestaciones
+- liquidacionHistorico: Posee la información de liquidación de empleados histórica, es decir información que estuvo al momento de liquidar en un mes específico pero pudo cambiar de una liquidación a otra, por ejemplo el cargo del empleado o el sueldo podría cambiar de la liquidación de Enero a la de Febrero.
+  
+3. Construir un html index.html que tenga los filtros:
+
+- "Código": de tipo input donde se podrá filtrar por código del empleado
+- "Documento": de tipo input donde se podrá filtrar por código del empleado
+- "Género" que será un combo box y desplegará "Masculino" ó "Femenino" y servirá para filtrar por "genero" de la tabla persona ("M" ó "F"). 
+- "Fecha Desde Liquidación": Tipo fecha o datepicker donde se puede elegir una fecha desde de liquidación 
+- "Fecha Hasta Liquidación": Tipo fecha o datepicker donde se puede elegir una fecha hasta de liquidación
+
+Los filtros pueden ir vacíos si no se quisiera filtrar la información.
+
+Finalmente un botón "Consultar".
+
+
+4. Al consultar se debe procesar en PHP y obtener una tabla con lo siguiente:
+Lista de personas liquidadas con sus ingresos y descuentos totales, filtradas (en el caso de que se utilicen los filtros) por: "Codigo", "Documento", "Cargo", "Fecha Desde", "Fecha Hasta" con las columnas siguientes:
+
+Código (columna "codigo" de la tabla persona)
+Documento (columna "documento" de la tabla persona)
+Nombres (primerNombre y segundoNombre de la tabla persona)
+Apellidos (primerApellido y segundoApellido de la tabla persona)
+Nombre de Cargo (el nombre de cargo de la tabla "cargos" según la fecha de liquidación histórica. Por ejemplo, si cambio un empleado de cargo en la liquidación de febrero, debería mostrarse el nombre de cargo según el campo histórico para esa liquidación, registrado en el campo "cargo" de liquidacionHistorico)
+Fecha de liquidación
+Total de Ingresos (el total de todos los conceptos de la tabla liquidación de "clase" "I")
+Total de Descuentos (el total de todos los conceptos de la tabla liquidación de "clase" "D")
+Total a pagar (Ingresos menos descuentos)
+Total de Prestaciones (el total de todos los conceptos de la tabla liquidación de "clase" "P")
+
+Agrupar las filas por empleado y por mes de liquidación y mostrarlas en una tabla. Por ejemplo si un empleado tiene liquidaciones de Enero, Febrero, Marzo, etc, se  mostrará el empleado varias veces por cada mes con su fecha de liquidación y totales por mes.
+
+5. Finalmente al final del html escribe como despedida "QUIERO TRABAJAR EN NOMINAZ!!" reemplazando las vocales Os por 0s y las Is por 1s con PHP.  
+
+
+Enviar el empaquetado de la aplicación al correo diego.perez@nominaz.com
